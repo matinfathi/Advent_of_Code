@@ -10,25 +10,6 @@ unique_numbers = [entry.split('|')[0].split() for entry in data.split('\n')]
 output_digits = [entry.split('|')[-1].split() for entry in data.split('\n')]
 
 
-def fill_positions(ref, pos, letter):
-    if pos == 0:
-        ref[0, 1:5] = letter
-    elif pos == 1:
-        ref[1:3, 0] = letter
-    elif pos == 2:
-        ref[1:3, -1] = letter
-    elif pos == 3:
-        ref[3, 1:5] = letter
-    elif pos == 4:
-        ref[4:6, 0] = letter
-    elif pos == 5:
-        ref[4:6, -1] = letter
-    elif pos == 6:
-        ref[-1, 1:5] = letter
-
-    return ref
-
-
 def by_size(words, size):
     return [word for word in words if len(word) == size]
 
