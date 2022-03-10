@@ -1,4 +1,3 @@
-import numpy as np
 from collections import Counter
 
 input_path = './input_day6'
