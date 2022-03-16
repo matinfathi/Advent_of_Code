@@ -20,14 +20,6 @@ def find_neighbors(point, arr):
     return found_neighbors
 
 
-def reconstruct_path(came_from, c):
-    f_p = [c]
-    while c in came_from:
-        c = came_from[c]
-        f_p.append(c)
-    return f_p
-
-
 def dijkstra(arr, s, e):
     cost_dict = defaultdict(lambda: math.inf)
     cost_dict[s] = 0
