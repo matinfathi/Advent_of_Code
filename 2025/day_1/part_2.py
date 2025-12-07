@@ -8,15 +8,6 @@ def open_file(file_address: str) -> list[str]:
     return lines
 
 
-def get_hundred_digit(number: int) -> int:
-    number_str = str(abs(number))
-    if len(number_str) >= 3:
-        hundreds_digit = int(number_str[-3])
-        return hundreds_digit
-    else:
-        return 0
-
-
 def main():
     total = 50
     num_zeros = 0
@@ -24,31 +15,32 @@ def main():
     lines = open_file(file_address=FILE_ADDRESS)
 
     for item in lines:
-        number = abs(int(item[1:].strip()))
-        to_99 = 100 - total
+        number = int(item[1:].strip())
+        to_100 = 100 - total
 
         num_zeros += number // 100
         extra = number % 100
 
         if item.startswith("R"):
-            if extra <= to_99:
+            if extra < to_100:
                 total += extra
             else:
                 num_zeros += 1
-                total = extra - to_99
+                total = extra - to_100
 
         else:
-            if extra < total:
+            if total == 0:
+                total = 100 - extra
+            elif extra < total:
                 total -= extra
+            elif extra == total:
+                num_zeros += 1
+                total = 0
             else:
                 num_zeros += 1
                 total = 100 - (extra - total)
 
-            
-
-
-    print(total)
-    print(num_zeros)
+    return num_zeros
 
 
 if __name__ == "__main__":
